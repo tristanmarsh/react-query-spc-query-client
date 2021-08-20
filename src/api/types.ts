@@ -1,6 +1,13 @@
+export type Author = {
+  authorId: string
+  lastName: string
+  firstName: string
+  email: string
+}
+
 export type PostMetadata = {
   postId: string
-  author: string
+  author: Author
   published: Date
   edited: Date
   version: PostVersion

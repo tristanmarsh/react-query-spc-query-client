@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react'
-import * as React from 'react'
 import { PostMetadata } from '../../api/types'
+import { Post } from '../post/post'
 
 interface PostProps {
   post: PostMetadata
@@ -34,6 +34,10 @@ export const PostPreview = observer(({ post }: PostProps) => {
           <small>Updated {post.edited.toLocaleString().slice(0, 10)}</small>
         </div>
       </div>
+      <details>
+        <summary>Click to load full post</summary>
+        <Post postId={post.postId} />
+      </details>
     </div>
   )
 })

@@ -23,6 +23,7 @@ class MockApiClient implements ApiClient {
 
   constructor(private readonly syntheticDelay: SyntheticDelay) {
     this.seedStore()
+    this.findPostsMetadata = this.findPostsMetadata.bind(this)
   }
 
   async findPostsMetadata() {

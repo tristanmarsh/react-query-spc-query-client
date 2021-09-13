@@ -1,57 +1,58 @@
 import { observer } from 'mobx-react'
-import * as React from 'react'
-import { PostMetadata } from '../../api/types'
-import { ApiClient, GetPostContentRequest } from '../../api/api_client'
-import { PostContent } from '../../api/types'
+import { usePost } from '../post_list/use_post'
 
 interface PostProps {
-  apiClient: ApiClient
-  post: PostMetadata
+  postId: string
 }
 
-export const Post = observer(({ apiClient, post }: PostProps) => {
-  const [postContent, setPostContent] = React.useState<PostContent>()
+export const Post = observer(({ postId }: PostProps) => {
+  const { isLoading, data: post } = usePost(postId)
 
-  React.useEffect(() => {
-    async function fetchPostContent() {
-      const getPostRequest: GetPostContentRequest = { postId: post.postId }
-      const content = await apiClient.getPostContent(getPostRequest)
-      setPostContent(content)
-    }
-    fetchPostContent()
-  }, [apiClient, post.postId])
+  if (isLoading) return <p>Loading...</p>
+
+  // React.useEffect(() => {
+  //   async function fetchPostContent() {
+  //     const getPostRequest: GetPostContentRequest = { postId: post.postId }
+  //     const content = await apiClient.getPostContent(getPostRequest)
+  //     setPostContent(content)
+  //   }
+  //   fetchPostContent()
+  // }, [apiClient, post.postId])
 
   return (
     <div className="post">
       <div className="postTitle">
-        <h2>{postContent?.postTitle}</h2>
+        <h2>{post?.postTitle}</h2>
       </div>
       <div className="postAuthor">
         <strong>
-          {post.author.firstName} {post.author.lastName}
+          {/* {post?.postContent?.author?.firstName}{' '} */}
+          {/* {post?.postContent?.author?.lastName} */}
         </strong>
         <br />
-        {post.author.email}
+        {/* {post?.postContent.author?.email} */}
       </div>
 
       <div className="postImage">
-        <img src={post.postImage.url} alt={`Title for ${post.postId}`} />
+        {/* <img src={post.postImage.url} alt={`Title for ${post.postId}`} /> */}
       </div>
 
       <div className="postMetadata">
         <div className="postMetadataPublished">
           <small>
-            Published {post.published.toLocaleString().slice(0, 10)}
+            {/* Published {post.published.toLocaleString().slice(0, 10)} */}
           </small>
         </div>
         <div className="postMetadataUpdated">
-          <small>Updated {post.edited.toLocaleString().slice(0, 10)}</small>
+          {/* <small>Updated {post.edited.toLocaleString().slice(0, 10)}</small> */}
         </div>
       </div>
 
       <div className="postContent">
         <div
-          dangerouslySetInnerHTML={{ __html: postContent?.postContent || '' }}
+          dangerouslySetInnerHTML={{
+            __html: post?.postContent || '',
+          }}
         ></div>
       </div>
     </div>

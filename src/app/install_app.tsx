@@ -5,10 +5,11 @@ import { ApiClient } from '../api/api_client'
 import { App } from './app'
 import { AppPresenter } from './app_presenter'
 import { AppStore } from './app_store'
+import { QueryClient } from 'react-query'
 
-export function installApp(apiClient: ApiClient) {
+export function installApp(apiClient: ApiClient, queryClient: QueryClient) {
   const store = new AppStore()
-  const presenter = new AppPresenter(apiClient)
+  const presenter = new AppPresenter(apiClient, queryClient)
   const fetchPosts = () => presenter.fetchPosts(store)
   const reloadPosts = () => presenter.reloadPosts(store)
 

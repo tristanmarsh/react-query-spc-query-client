@@ -1,4 +1,36 @@
 .App {
   font-family: sans-serif;
-  text-align: center;
+}
+
+.post {
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.postTitle h2 {
+  margin-top: 0;
+}
+
+.postPreview .postImage {
+  max-height: 10rem;
+}
+
+.postImage {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.postImage img {
+  width: 100%;
+}
+
+.postMetadata {
+  margin-bottom: 1rem;
+}
+
+.postAuthor {
+  margin-bottom: 1rem;
 }

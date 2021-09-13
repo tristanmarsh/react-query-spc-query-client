@@ -10,6 +10,7 @@ export function installApp(apiClient: ApiClient) {
   const store = new AppStore()
   const presenter = new AppPresenter(apiClient)
   const fetchPosts = () => presenter.fetchPosts(store)
+  const reloadPosts = () => presenter.reloadPosts(store)
 
   autorun(() => {
     console.log(store)
@@ -21,6 +22,13 @@ export function installApp(apiClient: ApiClient) {
       fetchPosts()
     }, [])
 
-    return <App apiClient={apiClient} store={store} posts={store.posts} />
+    return (
+      <App
+        apiClient={apiClient}
+        store={store}
+        posts={store.posts}
+        reloadPosts={reloadPosts}
+      />
+    )
   })
 }

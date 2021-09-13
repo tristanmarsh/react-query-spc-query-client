@@ -1,7 +1,7 @@
 {
-  "name": "react-query-queryclient-spc",
+  "name": "react-query-queryclient-imperative-cache-controller",
   "version": "1.0.0",
-  "description": "Using react query and the exposed queryClient to imperatively use the cache.\nSPC (Store, Presenter, Component) pattern.",
+  "description": "Reduced complexity test case of an SPC style app with react queries imperative cache controller being used in the presenters.",
   "keywords": [],
   "main": "src/index.tsx",
   "dependencies": {

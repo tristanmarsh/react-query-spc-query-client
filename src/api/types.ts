@@ -11,6 +11,8 @@ export type PostMetadata = {
   published: Date
   edited: Date
   version: PostVersion
+  postImage: PostImage
+  postContent: PostContent
 }
 
 // post version uses version for publish events
@@ -22,5 +24,17 @@ export type PostVersion = {
 
 export type PostContent = {
   postId: string
+  postTitle: string
   postContent: string
+}
+
+export type PostImage = {
+  url: string
+}
+
+export type Post = {
+  id: string
+  authorId: string
+  metadata: PostMetadata
+  content: PostContent
 }

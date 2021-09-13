@@ -2,10 +2,13 @@ import * as T from './types'
 
 type FindPostsMetadataResponse = T.PostMetadata[]
 type GetPostMetadata = T.PostMetadata
+
 export type GetPostContentRequest = {
   postId: string
 }
+
 type GetPostContent = T.PostContent
+
 export type GetAuthorRequest = {
   authorId: string
 }

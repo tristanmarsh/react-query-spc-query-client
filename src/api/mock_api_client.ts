@@ -1,20 +1,34 @@
+import * as T from './types'
 import {
   GetPostContentRequest,
   ApiClient,
   GetAuthorRequest,
 } from './api_client'
 import { SyntheticDelay } from './synthetic_delay'
-import { Fakes } from './fakes'
+import { Fakes, SeedAuthors, SeedPosts } from './fakes'
 import { Author } from './types'
 
-class MockApiClient implements ApiClient {
-  private store = {}
+class ApiClientStore {
+  posts: T.Post[] = []
+  authors: T.Author[] = []
+}
 
-  constructor(private readonly syntheticDelay: SyntheticDelay) {}
+class MockApiClient implements ApiClient {
+  private store: ApiClientStore = new ApiClientStore()
+
+  private seedStore() {
+    this.store.authors = SeedAuthors.authors
+    this.store.posts = SeedPosts.posts
+  }
+
+  constructor(private readonly syntheticDelay: SyntheticDelay) {
+    this.seedStore()
+  }
+
   async findPostsMetadata() {
     await this.syntheticDelay()
     console.log('mock findPosts')
-    return [Fakes.postMetadata]
+    return this.store.posts.map((x) => x.metadata)
   }
 
   async getPostMetadata() {

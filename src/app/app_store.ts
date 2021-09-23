@@ -2,7 +2,7 @@ import { PostMetadata } from '../api/types'
 import { makeAutoObservable } from 'mobx'
 
 export class AppStore {
-  posts: PostMetadata[] = []
+  // posts: PostMetadata[] = []
 
   isFetching: Boolean = false
 

@@ -26,8 +26,10 @@ export class AppPresenter {
     runInAction(() => {
       store.isFetching = true
     })
-    const result = await this.queryClient.fetchQuery('posts', () =>
-      this.apiClient.findPostsMetadata()
+
+    const result = await this.queryClient.fetchQuery(
+      'posts',
+      this.apiClient.findPostsMetadata
     )
     runInAction(() => {
       store.posts = result

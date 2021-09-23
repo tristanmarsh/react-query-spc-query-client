@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react'
+import { useState } from 'react'
 import { PostMetadata } from '../../api/types'
 import { Post } from '../post/post'
 
@@ -7,6 +8,8 @@ interface PostProps {
 }
 
 export const PostPreview = observer(({ post }: PostProps) => {
+  const [isOpen, setIsOpen] = useState<Boolean>()
+
   return (
     <div className="post postPreview">
       <div className="postTitle">
@@ -34,10 +37,10 @@ export const PostPreview = observer(({ post }: PostProps) => {
           <small>Updated {post.edited.toLocaleString().slice(0, 10)}</small>
         </div>
       </div>
-      <details>
-        <summary>Click to load full post</summary>
-        <Post postId={post.postId} />
-      </details>
+      <button onClick={() => setIsOpen((x) => !x)}>
+        {isOpen ? 'close' : 'open'} post
+      </button>
+      {isOpen && <Post postId={post.postId} />}
     </div>
   )
 })

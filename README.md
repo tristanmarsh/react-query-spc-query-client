@@ -25,15 +25,15 @@ app_presenter.ts uses queryClient to fetch 'posts', and provides the apiClient.f
 
 This `use_post_list.ts` and `use_post.ts` hooks provide a new alternative to accessing remote data with all the benefits react query provides.
 
-- Automatic window docus, network status refetching
-- Cache dehydration/rehydration
+- Automatic window focus, network status refetching.
+- Cache dehydration/rehydration.
 - Automatic de-duplication of requests.
 - Automatic de-deduplication of fresh cache data.
-- Obsering requests for cache garbage collection.
+- Observing requests for cache garbage collection.
 - [All the goodies](https://react-query.tanstack.com/comparison)
 
 ### Additional React Query Notes
 
-- Using the react query dev tools to understand the cache behaviour (Just rendering a react component)
-- Configuring requests to have varying staleTime config via pattern matching of 'posts'
+- Using the react query dev tools to understand the cache behaviour (Just rendering a react component).
+- Configuring requests to have varying staleTime config via pattern matching of 'posts'.
 - Placeholder display before initial loading based on existing cache entries. i.e. display the metadata of a post before the post has loaded because we already have partial values from the postMetadata:list request.
